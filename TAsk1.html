@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name List Example</title>
+</head>
+<body>
+    <input type="text" id="name" placeholder="Enter name">
+    <button id="AddTop">Add Top</button>
+    <button id="AddBottom">Add Bottom</button>
+    <button id="RemoveTop">Remove Top</button>
+    <button id="RemoveBottom">Remove Bottom</button>
+
+    <ul id="display"></ul>
+
+    <script>
+        let inputTag = document.getElementById("name");
+        let AddTop = document.getElementById("AddTop");
+        let AddBottom = document.getElementById("AddBottom");
+        let RemoveTop = document.getElementById("RemoveTop");
+        let RemoveBottom = document.getElementById("RemoveBottom");
+        let display = document.getElementById("display");
+
+        let allNames = [];
+
+        AddTop.addEventListener('click', () => {
+            if (inputTag.value.trim() !== "") {
+                allNames.unshift(inputTag.value.trim());
+                inputTag.value = "";
+                displayNames();
+            }
+        });
+
+        AddBottom.addEventListener('click', () => {
+            if (inputTag.value.trim() !== "") {
+                allNames.push(inputTag.value.trim());
+                inputTag.value = "";
+                displayNames();
+            }
+        });
+
+        RemoveTop.addEventListener('click', () => {
+            allNames.shift();
+            displayNames();
+        });
+
+        RemoveBottom.addEventListener('click', () => {
+            allNames.pop();
+            displayNames();
+        });
+
+        
+        function displayNames() {
+            let str = "";
+            for (let name of allNames) {
+                str += `<li>${name}</li>`;
+            }
+            display.innerHTML = str;
+        }
+    </script>
+</body>
+</html>
