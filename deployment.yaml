@@ -19,3 +19,21 @@ spec:
           image: nagaavula123/my-profile:latest
           ports:
             - containerPort: 8080
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-profile-service
+spec:
+  type: NodePort
+  selector:
+    app: my-profile
+  ports:
+    - port: 80
+      targetPort: 8080
+      nodePort: 30080
+
+            
+
+            
