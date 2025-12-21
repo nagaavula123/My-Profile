@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-profile-deployment
+  labels:
+    app: my-profile
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-profile
+  template:
+    metadata:
+      labels:
+        app: my-profile
+    spec:
+      containers:
+        - name: my-profile
+          image: nagaavula123/my-profile:latest
+          ports:
+            - containerPort: 8080
