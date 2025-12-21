@@ -1,3 +1,128 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- ================= BASIC PROJECT INFO ================= -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.devops</groupId>
+    <artifactId>my-profile</artifactId>
+    <version>1.0.0</version>
+    <packaging>war</packaging>
+
+    <name>My Profile Application</name>
+    <description>DevOps Portfolio App with Maven, SonarQube, Nexus, Tomcat</description>
+
+    <!-- ================= PROPERTIES ================= -->
+    <properties>
+        <!-- Java -->
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+
+        <!-- SonarQube / SonarCloud -->
+        <sonar.projectKey>nagaavula123_My-Profile</sonar.projectKey>
+        <sonar.organization>nagaavula123</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+
+        <!-- Encoding -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!-- ================= DEPENDENCIES ================= -->
+    <dependencies>
+
+        <!-- Servlet API (Tomcat provides this) -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Example dependency -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.13.0</version>
+        </dependency>
+
+    </dependencies>
+
+    <!-- ================= NEXUS ARTIFACT DEPLOYMENT ================= -->
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <name>Nexus Release Repository</name>
+            <url>http://NEXUS_HOST:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>http://NEXUS_HOST:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <!-- ================= BUILD & PLUGINS ================= -->
+    <build>
+        <finalName>my-profile</finalName>
+
+        <plugins>
+
+            <!-- Maven Compiler -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+            </plugin>
+
+            <!-- WAR Packaging (Tomcat) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
+            <!-- SonarQube Scanner -->
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.10.0.2594</version>
+            </plugin>
+
+            <!-- Deploy to Nexus -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.1.1</version>
+            </plugin>
+
+            <!-- Tomcat Deployment -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <url>http://TOMCAT_HOST:8080/manager/text</url>
+                    <server>tomcat</server>
+                    <path>/my-profile</path>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
+
+
+
+
+
+
+<!--
 <distributionManagement>
     <repository>
         <id>github</id>
@@ -14,4 +139,5 @@
             <version>3.1.1</version>
         </plugin>
     </plugins>
-</build>
+</build> 
+-->
