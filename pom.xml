@@ -106,7 +106,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <url>http://TOMCAT_HOST:8080/manager/text</url>
+                    <url>http://13.203.159.2:8080/manager/text</url>
                     <server>tomcat</server>
                     <path>/my-profile</path>
                 </configuration>
